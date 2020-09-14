@@ -12,8 +12,10 @@ model User {
   createdAt DateTime @default(now())
   email     String   @unique
   name      String
+  role      String
   posts     Post[]
   profile   Profile?
+
 }
 
 model Profile {

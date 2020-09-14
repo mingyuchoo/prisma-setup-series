@@ -10,6 +10,7 @@ async function main() {
     data: {
       name: 'Alice',
       email: 'alice@email.com',
+      role: 'employee',
     },
   });
   console.log(newUser);
@@ -36,5 +37,5 @@ main()
     throw e;
   })
   .finally(async () => {
-    await prisma.disconnect();
+    await prisma.$disconnect();
   });

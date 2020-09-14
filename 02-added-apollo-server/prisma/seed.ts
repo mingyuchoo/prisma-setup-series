@@ -7,6 +7,7 @@ const main = async () => {
     data: {
       name: 'Sasha',
       email: 'sasha@email.com',
+      role: 'employee',
     },
   });
   console.log(sasha);
@@ -15,5 +16,5 @@ const main = async () => {
 main()
   .catch((e) => console.error(e))
   .finally(async () => {
-    await prisma.disconnect();
+    await prisma.$disconnect();
   });
