@@ -3,8 +3,9 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  // const allUsers = await prisma.$queryRaw('SELECT * FROM User;');
   const allUsers = await prisma.user.findMany();
-  console.log(allUsers);
+  console.log('>>> allUsers\n', allUsers);
 
   const newUser = await prisma.user.create({
     data: {
@@ -13,23 +14,24 @@ async function main() {
       role: 'employee',
     },
   });
-  console.log(newUser);
+
+  console.log('>>> newUser\n', newUser);
 
   const updateUser = await prisma.user.update({
     data: { role: 'ADMIN' },
     where: { email: newUser.email },
   });
-  console.log(updateUser);
+  console.log('>>> updateUser\n', updateUser);
 
   const deleteUser = await prisma.user.delete({
     where: { email: updateUser.email },
   });
-  console.log(deleteUser);
+  console.log('>>> deleteUser\n', deleteUser);
 
   const userById = await prisma.user.findOne({
-    where: { id: deleteUser.id },
+    where: { id: newUser.id },
   });
-  console.log(userById);
+  console.log('>>> findOneUser\n', userById);
 }
 
 main()

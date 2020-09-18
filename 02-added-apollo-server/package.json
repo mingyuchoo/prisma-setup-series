@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --config .eslintrc.yml --fix './**/*.ts'",
-    "start": "ts-node ./index.ts"
+    "start": "ts-node ./index.ts",
+    "prisma:introspect": "npx prisma introspect",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate:save": "npx prisma migrate save --experimental",
+    "prisma:migrate:up": "npx prisma migrate up --experimental",
+    "prisma:studio": "npx prisma studio --experimental"
   },
   "keywords": [],
   "author": "",
