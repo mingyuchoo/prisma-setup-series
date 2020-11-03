@@ -10,6 +10,7 @@ parserOptions:
   sourceType: module
 plugins:
   - '@typescript-eslint'
+  - simple-import-sort
   - prettier
 extends:
   - eslint:recommended
@@ -18,3 +19,4 @@ extends:
   - plugin:prettier/recommended
 rules:
   prettier/prettier: error
+  simple-import-sort/sort: error
