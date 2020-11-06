@@ -1,5 +1,5 @@
 {
-  "name": "myapp",
+  "name": "03-apollo-server-using-sql",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,7 @@
     "prisma:introspect": "npx prisma introspect",
     "prisma:migrate:save": "npx prisma migrate save --experimental",
     "prisma:migrate:up": "npx prisma migrate up --experimental",
+    "prisma:seed": "ts-node ./prisma/seed.ts",
     "prisma:generate": "npx prisma generate",
     "prisma:studio": "npx prisma studio --experimental"
   },
