@@ -19,17 +19,17 @@
     "docker:exec:postgresql-db": "docker exec --interactive=true --tty=true postgresql-db /bin/bash"
   },
   "dependencies": {
-    "@prisma/client": "^2.10.2",
-    "@typescript-eslint/eslint-plugin": "^4.6.1",
-    "@typescript-eslint/parser": "^4.6.1",
+    "@prisma/client": "^2.11.0",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
     "typescript": "^4.0.5"
   },
   "devDependencies": {
-    "@prisma/cli": "^2.10.2",
-    "eslint": "^7.12.1",
+    "@prisma/cli": "^2.11.0",
+    "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-simple-import-sort": "^5.0.3",
+    "eslint-plugin-simple-import-sort": "^6.0.0",
     "prettier": "^2.1.2",
     "ts-node": "^9.0.0"
   }
