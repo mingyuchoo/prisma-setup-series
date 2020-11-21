@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@prisma/cli": "latest",
+    "@types/node": "latest",
     "eslint": "latest",
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",
