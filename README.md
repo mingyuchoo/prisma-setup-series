@@ -8,9 +8,9 @@
 ## How to Run
 
 1. `npx prisma init`
-2. **`npx prisma migrte save --name '<description>' --experimental`**
-3. **`npx prisma migrate up --experimental`**
-4. **`npx prisma generate`**
+2. **`npx prisma generate`**
+3. **`npx prisma migrte save --name '<description>' --experimental`**
+4. **`npx prisma migrate up --experimental`**
 5. `npx prisma studio --experimental`
 
 ## Make .env file in prisma directory

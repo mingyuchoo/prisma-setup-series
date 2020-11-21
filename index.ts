@@ -1,63 +1,36 @@
-import { PrismaClient, User } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  // SELECT ALL RECORD
-  let allUsers = await prisma.$queryRaw`
-  SELECT *
-  FROM public."User";
-  `;
+  const allUsers = await prisma.user.findMany();
   console.log('>>> allUsers\n', allUsers);
 
-  // INSERT ONE RECORD
-  const data = {
-    name: 'Alice',
-    email: 'alice@email.com',
-    role: 'employee',
-  };
-  const newUser = await prisma.$executeRaw`
-  INSERT INTO public."User"(name, email, role)
-  VALUES(${data.name}, ${data.email}, ${data.role})
-  RETURNING *;
-  `;
+  const newUser = await prisma.user.create({
+    data: {
+      name: 'Alice',
+      email: 'alice@email.com',
+      role: 'employee',
+    },
+  });
+
   console.log('>>> newUser\n', newUser);
 
-  // SELECT ONE RECORD
-  const userById = await prisma.$queryRaw`
-  SELECT id, name, email
-  FROM public."User"
-  WHERE name = ${data.name}
-  AND email = ${data.email}
-  ORDER BY id LIMIT 1;
-  `;
-  console.log('>>> findOneUser\n', userById[0]);
-
-  // UPDATE ONE RECORD
-  const newRole = 'ADMIN';
-  const updateUser = await prisma.$executeRaw`
-  UPDATE public."User"
-  SET role = ${newRole}
-  WHERE email = ${userById[0].email}
-  RETURNING *;
-  `;
+  const updateUser = await prisma.user.update({
+    data: { role: 'ADMIN' },
+    where: { email: newUser.email },
+  });
   console.log('>>> updateUser\n', updateUser);
 
-  // DELETE ONE RECORD
-  const deleteUser = await prisma.$executeRaw`
-  DELETE
-  FROM public."User"
-  WHERE email = ${userById[0].email}
-  RETURNING *;
-  `;
+  const deleteUser = await prisma.user.delete({
+    where: { email: updateUser.email },
+  });
   console.log('>>> deleteUser\n', deleteUser);
 
-  // SELECT ALL RECORD
-  allUsers = await prisma.$queryRaw`
-  SELECT *
-  FROM public."User";
-  `;
-  console.log('>>> allUsers\n', allUsers);
+  const userById = await prisma.user.findOne({
+    where: { id: newUser.id },
+  });
+  console.log('>>> findOneUser\n', userById);
 }
 
 main()
