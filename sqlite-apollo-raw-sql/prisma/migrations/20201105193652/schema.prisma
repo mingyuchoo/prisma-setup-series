@@ -1,16 +1,12 @@
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url = "***"
 }
 
 generator client {
   provider = "prisma-client-js"
 }
 
-// Prisma를 PostgreSQL와 함께 사용할 경우에는
-// User, Profile, createAt ..  같은 대소문자가 혼합된 객체를
-// PostgreSQL이 구분하므로 SQL 문장에 double quaote(")를 사용해서
-// 구분해주어야 한다.
 model User {
   id        Int      @default(autoincrement()) @id
   createdAt DateTime @default(now())

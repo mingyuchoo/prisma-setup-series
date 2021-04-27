@@ -1,0 +1,68 @@
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+
+// Prisma를 PostgreSQL와 함께 사용할 경우에는
+// User, Profile, createAt ..  같은 대소문자가 혼합된 객체를
+// PostgreSQL이 구분하므로 SQL 문장에 double quaote(")를 사용해서
+// 구분해주어야 한다.
+
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id        Int      @default(autoincrement()) @id
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String
+  role      Role     @default(USER)
+  posts     Post[]  // A user can have many posts
+  profile   Profile?
+}
+
+model Profile {
+  id     Int    @default(autoincrement()) @id
+  bio    String
+  userId Int
+  user   User   @relation(fields: [userId], references: [id]) // A Profile can have one user
+}
+
+model Post {
+  id         Int        @default(autoincrement()) @id
+  createdAt  DateTime   @default(now())
+  title      String
+  published  Boolean    @default(false)
+  authorId   Int
+  author     User       @relation(fields: [authorId], references: [id]) // A Post can have one author
+  categories Category[] @relation(references: [id]) // A Post can have many categories
+  comments   Comment[] // A post can have many comments
+  keywords   String[] // A scalar list
+}
+
+model Category {
+  id    Int    @default(autoincrement()) @id
+  name  String
+  posts Post[] @relation(references: [id]) // A comment can have many posts
+}
+
+model Comment {
+  id      Int     @id @default(autoincrement())
+  title   String
+  content String?
+  postId  Int?
+  Post    Post?   @relation(fields: [postId], references: [id])  // A comment can have one post
+}
+
+model Tag {
+  name  String  @id
+}
