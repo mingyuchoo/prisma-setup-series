@@ -1,5 +1,5 @@
 {
-  "name": "sqlite-basic",
+  "name": "sqlite-ts-00-initial",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node ./script.ts",

@@ -1,4 +1,4 @@
-# Prisam using SQLite
+# sqlite-ts-01-basic
 
 ref - <https://www.prisma.io/docs/getting-started/quickstart-typescript>
 
