@@ -2,37 +2,41 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// A `main` function so that you can use async/await
 async function main() {
-  // create
-  const postCreate = await prisma.post.create({
+  const allUsers = await prisma.user.findMany();
+  console.log(">>> allUsers\n", allUsers);
+
+  const newUser = await prisma.user.create({
     data: {
-      title: "Prisma makes databases easy",
-      author: {
-        connect: { email: "sarah@prisma.io" },
-      },
+      name: "Alice",
+      email: "alice@email.com",
+      role: "employee",
     },
   });
-  console.log(postCreate);
 
-  // select
-  const allUsers = await prisma.user.findMany({
-    include: { posts: true },
-  });
-  console.dir(allUsers, { depth: null });
+  console.log(">>> newUser\n", newUser);
 
-  // update
-  const postUpdate = await prisma.post.update({
-    where: { id: 2 },
-    data: { published: true },
+  const updateUser = await prisma.user.update({
+    data: { role: "ADMIN" },
+    where: { email: newUser.email },
   });
-  console.log(postUpdate);
+  console.log(">>> updateUser\n", updateUser);
+
+  const deleteUser = await prisma.user.delete({
+    where: { email: updateUser.email },
+  });
+  console.log(">>> deleteUser\n", deleteUser);
+
+  const userById = await prisma.user.findUnique({
+    where: { id: newUser.id },
+  });
+  console.log(">>> findOneUser\n", userById);
 }
 
 main()
   .catch((e) => {
     throw e;
   })
-  .finally(async () => {
-    await prisma.$disconnect();
+  .finally(() => {
+    void prisma.$disconnect();
   });

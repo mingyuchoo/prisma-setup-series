@@ -117,3 +117,7 @@ dist
 # Cypress
 cypress/**/videos
 cypress/**/screenshots
+
+
+# Prisma
+prisma/migrations

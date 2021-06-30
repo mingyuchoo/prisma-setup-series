@@ -1,20 +1,21 @@
 {
-  "name": "00-starter",
+  "name": "sqlite-basic",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node ./script.ts",
-    "prisma:introspect": "npx prisma introspect",
     "prisma:generate": "npx prisma generate",
-    "prisma:migrate:save": "npx prisma migrate save",
-    "prisma:migrate:up": "npx prisma migrate up",
-    "prisma:studio": "npx prisma studio"
+    "prisma:migrate:dev": "npx prisma migrate dev",
+    "prisma:studio": "npx prisma studio",
+    "prisma:db:pull": "npx prisma db pull",
+    "prisma:db:push": "npx prisma db pull"
   },
   "dependencies": {
-    "@prisma/client": "latest",
-    "typescript": "latest"
+    "@prisma/client": "^2.26.0"
   },
   "devDependencies": {
-    "@prisma/cli": "latest",
-    "ts-node": "latest"
+    "@types/node": "^15.12.5",
+    "prisma": "^2.26.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4"
   }
 }
