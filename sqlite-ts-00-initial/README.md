@@ -2,6 +2,14 @@
 
 ref - <https://www.prisma.io/docs/getting-started/quickstart-typescript>
 
+## How to install modules
+
+```bash
+npm install --offline
+
+npm install --offline --production # for deploy
+```
+
 ## How to start
 
 ```bash
