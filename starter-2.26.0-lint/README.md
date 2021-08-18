@@ -1,4 +1,4 @@
-# sqlite-ts-01-basic
+# starter-2.26.0-lint
 
 ref - <https://www.prisma.io/docs/getting-started/quickstart-typescript>
 
@@ -11,7 +11,6 @@ npm install --offline
 
 npm install --offline --production # for deploy
 ```
-
 
 ## How to start
 
